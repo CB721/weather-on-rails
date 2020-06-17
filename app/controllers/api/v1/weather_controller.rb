@@ -13,6 +13,10 @@ module Api
                 weather = Net::HTTP.get(uri);
                 render json: {status: 'SUCCESS', message: 'Loaded Weather', data: weather}, status: :ok
             end
+
+            def delete
+                render json: {status: 'Error', message: 'Invalid Request'}, status: :unprocessable_entity
+            end
         end
     end
 end
