@@ -9,9 +9,12 @@ module Api
                 key = ENV['WEATHER_KEY']
                 lat = params[:lat]
                 long = params[:long]
-                uri = URI("http://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{long}&appid=#{key}&units=imperial")
-                weather = Net::HTTP.get(uri);
-                render json: {status: 'SUCCESS', message: 'Loaded Weather', data: weather}, status: :ok
+                todayWeather = URI("http://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{long}&appid=#{key}&units=imperial")
+                weather = Net::HTTP.get(todayWeather)
+                forecastWeather = URI("https://api.openweathermap.org/data/2.5/forecast?q=?lat=#{lat}&lon=#{long}&appid=#{key}&units=imperial&mode=json")
+                forecast = Net::HTTP.get(forecastWeather)
+                allWeather = { weather, forecast }
+                render json: {status: 'SUCCESS', message: 'Loaded Weather', data: allWeather}, status: :ok
             end
 
             def delete
