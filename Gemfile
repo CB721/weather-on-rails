@@ -6,6 +6,7 @@ ruby '2.7.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'pg'
+# gem 'sqlite3'
 gem 'dotenv-rails', groups: [:development, :test, :production]
 gem 'rack-cors'
 # Use Puma as the app server
