@@ -11,7 +11,7 @@ module Api
                 long = params[:long]
                 todayWeather = URI("http://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{long}&appid=#{key}&units=imperial")
                 weather = Net::HTTP.get(todayWeather)
-                render json: {status: 'SUCCESS', message: 'Loaded Weather', data: weather}, status: 201
+                render json: {status: 'SUCCESS', message: 'Loaded Weather', data: weather}, status: 200
             end
 
             def create
@@ -28,5 +28,6 @@ module Api
                 render json: {status: 'Error', message: 'Invalid Request'}, status: :unprocessable_entity
             end
         end
+
     end
 end
