@@ -8,7 +8,9 @@ module Api
                 Dotenv.load
                 key = ENV['NEWS_KEY']
                 sources = params[:sources]
-                url = URI("https://newsapi.org/v2/everything?q=politics&language=en&sources=#{sources}&apiKey=#{key}")
+                from = params[:from]
+                to = params[:to]
+                url = URI("https://newsapi.org/v2/everything?q=politics&from=#{from}&to=#{to}&sortBy=publishedAt&language=en&sources=#{sources}&apiKey=#{key}")
                 news = Net::HTTP.get(url)
                 render json: news, status: 200
             end
